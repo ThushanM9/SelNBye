@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Product</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:#FADBD8; margin-top: 20px;border:px solid black; width: 750px;margin: auto; margin-top:20px; margin-top:5cm;">
+	<div class="container" style="border:5px solid black">
+		<h1>Edit Product</h1>
+		<br />
+		<form class="form" action="#" th:action="@{/save}" th:object="${product}"
+			method="post" id="ta">
+
+			<table cellpadding="10">
+				<tr>				
+					<td>Product ID:</td>
+					<td>
+						<input class="form-control" type="text" th:field="*{id}" readonly="readonly" />
+					</td>
+				</tr>			
+				<tr>				
+					<td>Product Name:</td>
+					<td>
+						<input class="form-control" name="name" id="name" required type="text" th:field="*{name}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Qty:</td>
+					<td><input class="form-control"  name="qty" id="qty" required type="text" th:field="*{qty}" /></td>
+				</tr>
+				<tr>
+					<td>Supplier Name:</td>
+					<td><input class="form-control"  name="description" required type="text" th:field="*{description}" /></td>
+				</tr>
+				<tr>
+					<td>Price:</td>
+					<td><input class="form-control"  name="price" id="price" required type="text" th:field="*{price}" /></td>
+				</tr>								
+				<tr>
+					<td colspan="2"><button class="btn btn-primary" type="submit" >Save Order</button> </td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+			
+	
+	
+	<script type="text/javascript">
+data = "";
+submit = function(){
+	 
+		$.ajax({
+			url:'saveaProduct',
+			type:'POST',
+			data:{customerName:$("#name").val(),productId:$('#productId').val(),productName:$('#productName').val(),qty:$('#qty').val()}},
+			success: function(response){
+					alert(response.message);
+					load();		
+			}				
+		});			
+}</script>
+</body>
+</html>

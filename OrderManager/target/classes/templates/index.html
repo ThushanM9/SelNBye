@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Order Manager</title>
+</head>
+<body style="background-color:powderblue";>
+<div align="center">
+    <h1>Order Manager</h1>
+    <a href="new">Create New Order</a>
+    <br/><br/>
+    <table border="1" cellpadding="10"  bgcolor="silver">>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Customer Name</th>
+                <th>Qty</th>
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${listOrders}">
+            	<td th:text="${orders.ordersId}">Product ID</td>
+                <td th:text="${orders.customerName}">Name</td>
+                <td th:text="${orders.productId}">Qty</td>
+                <td th:text="${orders.productName}">Description</td>
+                <td th:text="${product.qty}">Price</td>
+                <td>
+                	<a th:href="@{'/edit/' + ${orders.ordersId}}">Edit</a>
+                	&nbsp;&nbsp;&nbsp;
+                	<a th:href="@{'/delete/' + ${orders.ordersId}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>    
+</body>
+</html>
